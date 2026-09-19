@@ -1,0 +1,320 @@
+{
+  "loja": {
+    "slug": "costacastro",
+    "name": "Costa Castro",
+    "currency": "BRL",
+    "locale": "pt-BR",
+    "checkoutFields": [
+      {
+        "key": "name",
+        "type": "text",
+        "label": "Nome",
+        "required": true,
+        "maxLength": 120
+      },
+      {
+        "key": "phone",
+        "type": "tel",
+        "label": "WhatsApp para contato",
+        "required": false
+      },
+      {
+        "key": "fulfilment",
+        "type": "select",
+        "label": "Como prefere receber",
+        "required": true,
+        "options": [
+          "Entrega",
+          "Retirada na loja"
+        ]
+      },
+      {
+        "key": "address",
+        "type": "text",
+        "label": "Endereço de entrega",
+        "required": true,
+        "maxLength": 200,
+        "showWhen": {
+          "key": "fulfilment",
+          "equals": "Entrega"
+        }
+      },
+      {
+        "key": "payment",
+        "type": "select",
+        "label": "Forma de pagamento",
+        "required": false,
+        "options": [
+          "Pix",
+          "Cartão",
+          "Dinheiro"
+        ]
+      },
+      {
+        "key": "notes",
+        "type": "textarea",
+        "label": "Observações",
+        "required": false,
+        "maxLength": 500
+      }
+    ],
+    "shippingNote": "Frete combinado à parte"
+  },
+  "catalogVersion": 1,
+  "categories": [
+    {
+      "id": "cat_cama",
+      "slug": "cama",
+      "name": "Cama",
+      "sort": 0
+    },
+    {
+      "id": "cat_mesa",
+      "slug": "mesa",
+      "name": "Mesa",
+      "sort": 1
+    },
+    {
+      "id": "cat_banho",
+      "slug": "banho",
+      "name": "Banho",
+      "sort": 2
+    },
+    {
+      "id": "cat_folhagem",
+      "slug": "colecao-folhagem",
+      "name": "Coleção Folhagem",
+      "sort": 3
+    }
+  ],
+  "products": [
+    {
+      "id": "prd_folhagem",
+      "slug": "jogo-de-lencol-folhagem",
+      "name": "Jogo de lençol Folhagem",
+      "description": "Lençol com elástico, lençol de cima e duas fronhas, com barrado de folhagens tropicais em traço fino.",
+      "categoryIds": [
+        "cat_cama",
+        "cat_folhagem"
+      ],
+      "badge": "Coleção Folhagem",
+      "tags": [
+        "colecao:folhagem",
+        "destaque"
+      ],
+      "meta": {
+        "Material": "100% algodão egípcio",
+        "Fios": "400",
+        "Acabamento": "Barrado bordado"
+      },
+      "options": [
+        {
+          "name": "Tamanho",
+          "values": [
+            "Casal",
+            "Queen",
+            "King"
+          ]
+        }
+      ],
+      "images": [],
+      "variants": [
+        {
+          "id": "var_folhagem_casal",
+          "name": "Casal",
+          "optionValues": {
+            "Tamanho": "Casal"
+          },
+          "priceCents": 79900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 6
+        },
+        {
+          "id": "var_folhagem_queen",
+          "name": "Queen",
+          "optionValues": {
+            "Tamanho": "Queen"
+          },
+          "priceCents": 89900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 6
+        },
+        {
+          "id": "var_folhagem_king",
+          "name": "King",
+          "optionValues": {
+            "Tamanho": "King"
+          },
+          "priceCents": 104900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 4
+        }
+      ]
+    },
+    {
+      "id": "prd_cobreleito",
+      "slug": "kit-cobreleito-folhagem",
+      "name": "Kit cobreleito Folhagem",
+      "description": "Cobreleito matelassê e dois porta-travesseiros, coordenados com o jogo de lençol Folhagem.",
+      "categoryIds": [
+        "cat_cama",
+        "cat_folhagem"
+      ],
+      "badge": "Coleção Folhagem",
+      "tags": [
+        "colecao:folhagem"
+      ],
+      "meta": {
+        "Material": "100% algodão egípcio",
+        "Acabamento": "Matelassê com pesponto"
+      },
+      "options": [
+        {
+          "name": "Tamanho",
+          "values": [
+            "Queen",
+            "King"
+          ]
+        }
+      ],
+      "images": [],
+      "variants": [
+        {
+          "id": "var_cobre_queen",
+          "name": "Queen",
+          "optionValues": {
+            "Tamanho": "Queen"
+          },
+          "priceCents": 119900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 3
+        },
+        {
+          "id": "var_cobre_king",
+          "name": "King",
+          "optionValues": {
+            "Tamanho": "King"
+          },
+          "priceCents": 139900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 3
+        }
+      ]
+    },
+    {
+      "id": "prd_fronha",
+      "slug": "par-de-fronhas-passaros",
+      "name": "Par de fronhas Pássaros",
+      "description": "Duas fronhas com bordado artesanal de pássaros no canto.",
+      "categoryIds": [
+        "cat_cama"
+      ],
+      "badge": null,
+      "tags": [
+        "colecao:passaros"
+      ],
+      "meta": {
+        "Material": "100% algodão egípcio",
+        "Fios": "400",
+        "Acabamento": "Bordado artesanal",
+        "Medida": "50 × 70 cm"
+      },
+      "options": [],
+      "images": [],
+      "variants": [
+        {
+          "id": "var_fronha_padrao",
+          "name": "50 × 70 cm",
+          "optionValues": {},
+          "priceCents": 22900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 8
+        }
+      ]
+    },
+    {
+      "id": "prd_toalha_mesa",
+      "slug": "toalha-de-mesa-ramagem",
+      "name": "Toalha de mesa Ramagem",
+      "description": "Toalha de mesa com ramagem em aquarela suave sobre fundo marfim.",
+      "categoryIds": [
+        "cat_mesa"
+      ],
+      "badge": null,
+      "tags": [],
+      "meta": {
+        "Material": "100% algodão",
+        "Acabamento": "Bainha dupla"
+      },
+      "options": [
+        {
+          "name": "Tamanho",
+          "values": [
+            "4 lugares",
+            "8 lugares"
+          ]
+        }
+      ],
+      "images": [],
+      "variants": [
+        {
+          "id": "var_mesa_4",
+          "name": "4 lugares",
+          "optionValues": {
+            "Tamanho": "4 lugares"
+          },
+          "priceCents": 34900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 5
+        },
+        {
+          "id": "var_mesa_8",
+          "name": "8 lugares",
+          "optionValues": {
+            "Tamanho": "8 lugares"
+          },
+          "priceCents": 49900,
+          "compareAtCents": null,
+          "available": false,
+          "maxQty": 0
+        }
+      ]
+    },
+    {
+      "id": "prd_toalhas",
+      "slug": "jogo-de-toalhas-brisa",
+      "name": "Jogo de toalhas Brisa",
+      "description": "Toalha de banho e toalha de rosto em felpa macia, com barra em verde-folha.",
+      "categoryIds": [
+        "cat_banho"
+      ],
+      "badge": null,
+      "tags": [],
+      "meta": {
+        "Material": "100% algodão egípcio",
+        "Acabamento": "Barra em jacquard",
+        "Composição": "Banho + rosto"
+      },
+      "options": [],
+      "images": [],
+      "variants": [
+        {
+          "id": "var_toalhas",
+          "name": "Banho + rosto",
+          "optionValues": {},
+          "priceCents": 27900,
+          "compareAtCents": null,
+          "available": true,
+          "maxQty": 6
+        }
+      ]
+    }
+  ]
+}
