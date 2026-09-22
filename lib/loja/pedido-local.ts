@@ -8,6 +8,7 @@ import "server-only";
 import { getCatalogo } from "./api";
 import { montarMensagem, montarWaUrl } from "./mensagem";
 import type { ErroLoja, Linha, LinhaMudou, PedidoCriado } from "./types";
+import { WHATSAPP_E164 } from "@/lib/site";
 
 export type ResultadoPedido = { ok: true; pedido: PedidoCriado } | { ok: false; erro: ErroLoja["erro"] };
 
@@ -77,7 +78,6 @@ export async function pedidoLocal({
   const subtotalCents = itens.reduce((s, i) => s + i.lineCents, 0);
   const code = `#CC-${++seq}`;
   const message = montarMensagem({ loja: catalogo.loja, code, itens, subtotalCents, customer });
-  const numero = process.env.LOJA_WHATSAPP ?? "5521900000000";
 
   return {
     ok: true,
@@ -88,7 +88,7 @@ export async function pedidoLocal({
       currency: catalogo.loja.currency,
       lines: itens,
       message,
-      waUrl: montarWaUrl(numero, message),
+      waUrl: montarWaUrl(WHATSAPP_E164, message),
     },
   };
 }

@@ -13,12 +13,6 @@
         "maxLength": 120
       },
       {
-        "key": "phone",
-        "type": "tel",
-        "label": "WhatsApp para contato",
-        "required": false
-      },
-      {
         "key": "fulfilment",
         "type": "select",
         "label": "Como prefere receber",
@@ -38,17 +32,6 @@
           "key": "fulfilment",
           "equals": "Entrega"
         }
-      },
-      {
-        "key": "payment",
-        "type": "select",
-        "label": "Forma de pagamento",
-        "required": false,
-        "options": [
-          "Pix",
-          "Cartão",
-          "Dinheiro"
-        ]
       },
       {
         "key": "notes",
