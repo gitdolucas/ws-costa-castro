@@ -13,6 +13,7 @@ export function Cabecalho() {
         </Link>
         <nav className="menu" aria-label="Principal">
           <Link href="/#vitrine">Vitrine</Link>
+          <Link href="/loja">Loja</Link>
           <Link href="/sobre">Sobre</Link>
           <Link href="/contato">Contato</Link>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">

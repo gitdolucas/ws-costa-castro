@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { CabecaInterna } from "@/components/cabeca-interna";
-import { VitrineEditorial } from "@/components/vitrine-editorial";
-import { VITRINE } from "@/lib/content/vitrine";
+import { FiltroCategorias, Vitrine } from "@/components/loja/vitrine";
+import { getCatalogo } from "@/lib/loja/api";
 
 export const metadata: Metadata = {
-  title: "Vitrine",
-  description: "Curadoria Costa Castro — cama, banho, baby e bordados. Consulte pelo WhatsApp.",
+  title: "Loja",
+  description: "Catálogo Costa Castro — cama, banho, baby e bordados. Consulte pelo WhatsApp.",
 };
 
-export default function LojaPage() {
+export default async function LojaPage() {
+  const catalogo = await getCatalogo();
+
   return (
     <>
-      <CabecaInterna rotulo="Vitrine" titulo="Vitrine" lead="Seleção editorial — disponibilidade e valores no atendimento." />
+      <CabecaInterna rotulo="Loja" titulo="Loja" lead="Catálogo completo — disponibilidade e valores no atendimento." />
       <div className="conteudo-site">
         <section className="secao">
-          <VitrineEditorial itens={VITRINE} />
+          <FiltroCategorias catalogo={catalogo} />
+          <Vitrine catalogo={catalogo} produtos={catalogo.products} />
         </section>
       </div>
     </>
