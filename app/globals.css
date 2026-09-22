@@ -30,10 +30,12 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--tinta);
   font-family: var(--texto);
   font-weight: 300;
@@ -193,9 +195,10 @@ p {
   margin: 0 auto;
   padding: 1.25rem var(--margem);
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
 }
 .marca {
   text-decoration: none;
@@ -217,11 +220,14 @@ p {
 }
 .menu {
   display: flex;
+  flex-wrap: wrap;
   grid-column: 1 / -1;
   order: 3;
-  gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+  gap: 0.5rem 1.25rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--fio);
+  border-top: var(--hairline, 1px solid var(--fio));
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -270,8 +276,10 @@ p {
     gap: 3rem;
   }
   .menu {
+    flex-wrap: nowrap;
     grid-column: auto;
     order: 0;
+    width: auto;
     gap: 2rem;
     padding-top: 0;
     border-top: 0;
