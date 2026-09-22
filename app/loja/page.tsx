@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Reveal } from "@/components/motion/reveal";
+import { CabecaInterna } from "@/components/cabeca-interna";
 import { VitrineEditorial } from "@/components/vitrine-editorial";
 import { VITRINE } from "@/lib/content/vitrine";
 
@@ -10,12 +10,13 @@ export const metadata: Metadata = {
 
 export default function LojaPage() {
   return (
-    <section className="secao pagina-interna" aria-labelledby="titulo-loja">
-      <Reveal>
-        <h1 id="titulo-loja">Vitrine</h1>
-        <p className="lead">Seleção editorial — disponibilidade e valores no atendimento.</p>
-      </Reveal>
-      <VitrineEditorial itens={VITRINE} />
-    </section>
+    <>
+      <CabecaInterna rotulo="Vitrine" titulo="Vitrine" lead="Seleção editorial — disponibilidade e valores no atendimento." />
+      <div className="conteudo-site">
+        <section className="secao">
+          <VitrineEditorial itens={VITRINE} />
+        </section>
+      </div>
+    </>
   );
 }
