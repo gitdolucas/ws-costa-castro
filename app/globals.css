@@ -1231,16 +1231,10 @@ main {
     repeating-linear-gradient(-12deg, transparent, transparent 6px, rgba(104, 112, 91, 0.06) 6px, rgba(104, 112, 91, 0.06) 7px);
 }
 
-.pagina-interna {
-  max-width: var(--largura);
-  margin: 0 auto;
-  padding: clamp(2rem, 6vw, 4rem) var(--margem);
-}
-
-.pagina-interna .lead {
+.lead {
   font-size: 1.125rem;
   max-width: 52ch;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 0;
   color: var(--tinta-sub);
 }
 
@@ -1254,11 +1248,16 @@ main {
   .contato-grade {
     grid-template-columns: 1fr 1fr;
   }
+  .contato-grade > :last-child {
+    border-left: var(--hairline);
+    padding-left: 2rem;
+  }
 }
 
 .contato-numero {
   font-family: var(--titulo);
-  font-size: 1.35rem;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-style: italic;
   margin: 0.5rem 0 1rem;
 }
 
@@ -1292,6 +1291,16 @@ main {
 }
 .rotulo--claro {
   color: var(--folha);
+}
+
+.cabeca-interna {
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+.cabeca-interna-titulo {
+  font-size: calc(var(--display) * 0.75);
+  letter-spacing: -0.02em;
+  line-height: 0.98;
 }
 
 /* — Hero editorial — */
@@ -1660,6 +1669,27 @@ main {
   .pilar {
     border-left: 1px solid rgba(242, 238, 228, 0.18);
     padding-left: 1.25rem;
+  }
+}
+
+.pilares--claro {
+  border-color: var(--fio);
+  list-style: none;
+  margin: 0;
+  padding-top: 2rem;
+}
+.pilares--claro .pilar-num {
+  color: var(--caqui);
+}
+.pilares--claro .pilar h3 {
+  color: var(--tinta);
+}
+.pilares--claro .pilar p:last-child {
+  color: var(--tinta-sub);
+}
+@media (min-width: 820px) {
+  .pilares--claro .pilar {
+    border-left: 1px solid var(--fio);
   }
 }
 
