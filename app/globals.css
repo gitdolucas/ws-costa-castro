@@ -798,7 +798,26 @@ main {
   min-width: 2rem;
   text-align: center;
 }
+.ficha-produto {
+  margin: 0;
+  display: grid;
+}
+.ficha-produto > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--fio);
+}
+.ficha-produto dt {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--caqui);
+}
 .ficha-produto dd {
+  margin: 0;
   font-size: 1.2rem;
 }
 
