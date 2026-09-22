@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
-import { getCatalogo } from "@/lib/loja/api";
-import { FiltroCategorias, Vitrine } from "@/components/loja/vitrine";
+import { Reveal } from "@/components/motion/reveal";
+import { VitrineEditorial } from "@/components/vitrine-editorial";
+import { VITRINE } from "@/lib/content/vitrine";
 
 export const metadata: Metadata = {
-  title: "Coleção",
-  description: "Jogos de cama, mesa e banho em algodão egípcio. Monte a sacola e finalize pelo WhatsApp.",
+  title: "Vitrine",
+  description: "Curadoria Costa Castro — cama, banho, baby e bordados. Consulte pelo WhatsApp.",
 };
 
-export default async function Loja() {
-  const catalogo = await getCatalogo();
+export default function LojaPage() {
   return (
-    <div className="pagina-loja">
-      <header className="loja-cabeca">
-        <p className="rotulo">A coleção</p>
-        <h1>
-          Cama, mesa <em>e banho</em>
-        </h1>
-        <FiltroCategorias catalogo={catalogo} />
-      </header>
-      <Vitrine catalogo={catalogo} />
-    </div>
+    <section className="secao pagina-interna" aria-labelledby="titulo-loja">
+      <Reveal>
+        <h1 id="titulo-loja">Vitrine</h1>
+        <p className="lead">Seleção editorial — disponibilidade e valores no atendimento.</p>
+      </Reveal>
+      <VitrineEditorial itens={VITRINE} />
+    </section>
   );
 }

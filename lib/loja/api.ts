@@ -5,6 +5,8 @@
  * Kit 1.0.0-pre. Copie, não importe (→ src/lib/loja).
  */
 import "server-only";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import type { Catalogo, Produto } from "./types";
 
 export class ErroApiLoja extends Error {
@@ -27,8 +29,24 @@ function config() {
 /** Tag de cache que o webhook do admin revalida quando o catálogo muda. */
 export const tagLoja = (org: string) => `loja:${org}`;
 
+async function getCatalogoFixture(): Promise<Catalogo> {
+  const raw = await readFile(path.join(process.cwd(), "fixtures/catalogo.json"), "utf8");
+  return JSON.parse(raw) as Catalogo;
+}
+
 export async function getCatalogo(): Promise<Catalogo> {
-  const { base, org, token, bypass } = config();
+  if (process.env.CARA_CERTA_USE_FIXTURE === "1") {
+    return getCatalogoFixture();
+  }
+  let base: string | undefined;
+  let org: string | undefined;
+  let token = "";
+  let bypass: string | undefined;
+  try {
+    ({ base, org, token, bypass } = config());
+  } catch {
+    return getCatalogoFixture();
+  }
   const res = await fetch(`${base}/loja/catalogo`, {
     headers: { Authorization: `Bearer ${token}`, Accept: "application/json", ...(bypass ? { "x-vercel-protection-bypass": bypass } : {}) },
     // "max": revalida pela tag (webhook); 1 h é só a rede de segurança.

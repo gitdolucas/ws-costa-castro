@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
-import { getCatalogo } from "@/lib/loja/api";
-import { SITE } from "@/lib/site";
+import { SITE, SITE_INDEXAVEL } from "@/lib/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const catalogo = await getCatalogo();
+export default function sitemap(): MetadataRoute.Sitemap {
+  if (!SITE_INDEXAVEL) {
+    return [];
+  }
+  const now = new Date();
   return [
-    { url: SITE },
-    { url: `${SITE}/loja` },
-    ...catalogo.categories.map((c) => ({ url: `${SITE}/loja/categoria/${c.slug}` })),
-    ...catalogo.products.map((p) => ({ url: `${SITE}/loja/${p.slug}` })),
+    { url: SITE, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE}/loja`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE}/sobre`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/contato`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 }

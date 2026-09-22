@@ -1,20 +1,6 @@
-import type { Metadata } from "next";
-import { getCatalogo } from "@/lib/loja/api";
-import { Sacola } from "@/components/loja/sacola";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "Sacola", robots: { index: false } };
-
-export default async function PaginaSacola() {
-  const catalogo = await getCatalogo();
-  return (
-    <div className="pagina-sacola">
-      <header className="loja-cabeca">
-        <p className="rotulo">Quase lá</p>
-        <h1>
-          Sua <em>sacola</em>
-        </h1>
-      </header>
-      <Sacola campos={catalogo.loja.checkoutFields} notaFrete={catalogo.loja.shippingNote} />
-    </div>
-  );
+/** v1: conversão direta por WhatsApp; sacola desativada. */
+export default function SacolaPage() {
+  redirect("/contato");
 }

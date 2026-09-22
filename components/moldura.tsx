@@ -1,55 +1,55 @@
 import Link from "next/link";
 import { SeloAssinatura } from "@/components/assinatura";
-import { ContagemSacola } from "@/components/contagem-sacola";
-import { whatsappUrl } from "@/lib/site";
+import { CIDADES_ATENDIMENTO, INSTAGRAM_URL, TAGLINE, whatsappUrl } from "@/lib/site";
 import { Ramo } from "@/components/ornamentos";
-
-export function AvisoPiloto() {
-  return (
-    <p className="aviso-piloto">
-      Protótipo interno · catálogo, preços e fotos provisórios
-    </p>
-  );
-}
 
 export function Cabecalho() {
   return (
-    <header className="cabecalho">
-      <Link href="/" className="marca" aria-label="Costa Castro, início">
-        <span className="marca-nome">Costa Castro</span>
-        <span className="marca-sub">cama · mesa · banho</span>
-      </Link>
-      <nav className="menu" aria-label="Principal">
-        <Link href="/loja/categoria/cama">Cama</Link>
-        <Link href="/loja/categoria/mesa">Mesa</Link>
-        <Link href="/loja/categoria/banho">Banho</Link>
-      </nav>
-      <Link href="/loja/sacola" className="sacola-link">
-        Sacola <ContagemSacola />
-      </Link>
-    </header>
+    <div className="cabecalho-fixo">
+      <header className="cabecalho">
+        <Link href="/" className="marca" aria-label="Costa Castro, início">
+          <span className="marca-nome">Costa Castro</span>
+          <span className="marca-sub">cama · mesa · banho</span>
+        </Link>
+        <nav className="menu" aria-label="Principal">
+          <Link href="/#vitrine">Vitrine</Link>
+          <Link href="/sobre">Sobre</Link>
+          <Link href="/contato">Contato</Link>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+        </nav>
+        <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="cabecalho-whatsapp link-forte">
+          WhatsApp
+        </a>
+      </header>
+    </div>
   );
 }
 
 export function Rodape() {
+  const cidades = CIDADES_ATENDIMENTO.join(" e ");
+
   return (
     <footer className="rodape">
       <Ramo className="rodape-ramo" />
       <div className="rodape-grade">
         <div>
           <p className="rodape-marca">Costa Castro</p>
-          <p>Cama, mesa e banho em algodão egípcio. Niterói, RJ.</p>
+          <p>{TAGLINE}</p>
         </div>
         <div>
-          <p className="rotulo">Visite a loja</p>
-          <p>[ENDEREÇO] · Niterói, RJ</p>
-          <p>[HORÁRIO]</p>
+          <p className="nota">Atendimento em {cidades}. Endereço e horário confirmados no WhatsApp.</p>
         </div>
         <div>
-          <p className="rotulo">Atendimento</p>
-          <a href={whatsappUrl()} target="_blank" rel="noopener" className="link-forte">
-            Falar no WhatsApp
+          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="link-forte">
+            Falar com a Costa Castro
           </a>
+          <p className="nota">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="link">
+              Instagram
+            </a>
+          </p>
         </div>
       </div>
       <div className="rodape-assinatura">
