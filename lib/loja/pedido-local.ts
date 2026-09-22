@@ -5,6 +5,7 @@
  * criar pedidos, este arquivo sai e o kit ganha `criarPedido()` em api.ts.
  */
 import "server-only";
+import { randomBytes } from "crypto";
 import { getCatalogo } from "./api";
 import { montarMensagem, montarWaUrl } from "./mensagem";
 import type { ErroLoja, Linha, LinhaMudou, PedidoCriado } from "./types";
@@ -12,7 +13,20 @@ import { WHATSAPP_E164 } from "@/lib/site";
 
 export type ResultadoPedido = { ok: true; pedido: PedidoCriado } | { ok: false; erro: ErroLoja["erro"] };
 
-let seq = 1041;
+/**
+ * Código curto e legível ao telefone, sem estado no servidor: prefixo do
+ * slug da loja (sem identidade fixa do kit) + data/hora compacta + sufixo
+ * aleatório criptograficamente forte. Cada chamada é independente — não há
+ * contador nem cache entre pedidos ou reinícios do processo.
+ */
+function gerarCodigoPedido(slug: string): string {
+  const prefixo = slug.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 4) || "PED";
+  const agora = new Date();
+  const par = (n: number) => String(n).padStart(2, "0");
+  const timestamp = `${String(agora.getFullYear()).slice(-2)}${par(agora.getMonth() + 1)}${par(agora.getDate())}${par(agora.getHours())}${par(agora.getMinutes())}`;
+  const sufixo = randomBytes(3).toString("hex").toUpperCase();
+  return `#${prefixo}-${timestamp}-${sufixo}`;
+}
 
 export async function pedidoLocal({
   lines,
@@ -76,7 +90,7 @@ export async function pedidoLocal({
     };
   });
   const subtotalCents = itens.reduce((s, i) => s + i.lineCents, 0);
-  const code = `#CC-${++seq}`;
+  const code = gerarCodigoPedido(catalogo.loja.slug);
   const message = montarMensagem({ loja: catalogo.loja, code, itens, subtotalCents, customer });
 
   return {
