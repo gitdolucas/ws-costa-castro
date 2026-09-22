@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { Cabecalho, Rodape } from "@/components/moldura";
 import { jsonLdOrganization } from "@/lib/jsonld";
 import { SITE, SITE_INDEXAVEL, TAGLINE } from "@/lib/site";
 
-const titulo = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+// Fontes vendorizadas (subset latin, variáveis) — build offline, sem chamada ao Google em CI/sandbox.
+const titulo = localFont({
+  src: [
+    { path: "./fonts/CormorantGaramond-variable.woff2", weight: "300 700", style: "normal" },
+    { path: "./fonts/CormorantGaramond-variable-italic.woff2", weight: "300 700", style: "italic" },
+  ],
   display: "swap",
   variable: "--fonte-titulo",
+  fallback: ["Georgia", "serif"],
 });
-const texto = Jost({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+const texto = localFont({
+  src: [{ path: "./fonts/Jost-variable.woff2", weight: "100 900", style: "normal" }],
   display: "swap",
   variable: "--fonte-texto",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {

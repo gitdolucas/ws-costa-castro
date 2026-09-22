@@ -7,3 +7,6 @@ next-env.d.ts
 .next-*
 .vercel
 .env*
+
+# Mantém o exemplo versionado apesar de .env*
+!.env.example
