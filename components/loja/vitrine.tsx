@@ -4,7 +4,7 @@ import { formatarDinheiro } from "@/lib/loja/dinheiro";
 import { FotoProduto } from "./foto";
 
 /**
- * Vitrine — UI do kit, reescrita na cartela da Costa Castro.
+ * Vitrine — UI genérica do kit de vitrine/catálogo.
  * Composição editorial escalonada, não grid uniforme. Server component.
  */
 
