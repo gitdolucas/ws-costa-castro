@@ -6,7 +6,7 @@ import type { Produto } from "@/lib/loja/types";
 import { useCarrinho, useDinheiro } from "@/lib/loja/ganchos";
 import { escolher, valoresDaOpcao, varianteDe, varianteInicial } from "@/lib/loja/opcoes";
 
-/** Escolha por opção (Tamanho…) + quantidade + Adicionar à sacola. UI do kit na cartela da Costa Castro. */
+/** Escolha por opção (Tamanho…) + quantidade + Adicionar à sacola. UI genérica do kit de vitrine/catálogo. */
 export function CompraProduto({ produto }: { produto: Produto }) {
   const [escolhas, setEscolhas] = useState(() => ({ ...varianteInicial(produto).optionValues }));
   const [qtd, setQtd] = useState(1);
